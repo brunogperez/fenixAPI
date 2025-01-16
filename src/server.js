@@ -132,7 +132,7 @@ MongoClient.connect(uri)
     });
 
     // Endpoint para actualizar un subscriber por su ID
-    server.patch("/subscriber/:id", async (req, res) => {
+    server.patch("/subscribers/:id", async (req, res) => {
       const { id } = req.params;
 
       if (!ObjectId.isValid(id)) {
@@ -143,8 +143,8 @@ MongoClient.connect(uri)
 
       try {
         const result = await subscribersCollection.updateOne(
-          { _id: new ObjectId(id) }, // Usamos ObjectId para convertir el ID a un tipo válido
-          { $set: updateData } // Usamos $set para actualizar solo los campos proporcionados
+          { _id: new ObjectId(id) }, 
+          { $set: updateData } 
         );
 
         if (result.matchedCount === 0) {
@@ -244,7 +244,7 @@ MongoClient.connect(uri)
 
     // Levanta el servidor en el puerto 3000
     server.listen(3000, () => {
-      console.log("JSON Server está corriendo en http://localhost:3000");
+      console.log("fenix server está corriendo");
     });
   })
   .catch((err) => {
